@@ -12,6 +12,7 @@
 @property(strong) CBCentralManager* centralManager;
 
 // Private methods
+- (bool)isCentralManagerStateValid;
 - (void)validateCentralManagerState;
 
 @end
@@ -26,11 +27,6 @@
         // TODO: Review dispatch_queue attributes to see if there's a better way to handle this.
         _centralManagerQueue = dispatch_queue_create("AdapterBaseMacOS.centralManagerQueue", DISPATCH_QUEUE_SERIAL);
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:_centralManagerQueue options:nil];
-
-        // Validate authorization state of the central manager.
-        if (CBCentralManager.authorization != CBManagerAuthorizationAllowedAlways) {
-            throw SimpleBLE::Exception::CoreBluetoothException("Application does not have Bluetooth authorization");
-        }
     }
     return self;
 }
@@ -39,11 +35,21 @@
     return (__bridge void*)self.centralManager;
 }
 
+- (bool)isCentralManagerStateValid {
+    return CBCentralManager.authorization == CBManagerAuthorizationAllowedAlways && self.centralManager.state == CBManagerStatePoweredOn;
+}
+
 - (void)validateCentralManagerState {
     // Validate the central manager state by checking if it is powered on for up to 5 seconds.
     NSDate* endDate = [NSDate dateWithTimeInterval:5.0 sinceDate:NSDate.now];
-    while (self.centralManager.state != CBManagerStatePoweredOn && [NSDate.now compare:endDate] == NSOrderedAscending) {
+
+    while (![self isCentralManagerStateValid] && [NSDate.now compare:endDate] == NSOrderedAscending) {
         [NSThread sleepForTimeInterval:0.01];
+    }
+
+    // Validate authorization state of the central manager.
+    if (CBCentralManager.authorization != CBManagerAuthorizationAllowedAlways) {
+            throw SimpleBLE::Exception::CoreBluetoothException("Application does not have Bluetooth authorization");
     }
 
     if (self.centralManager.state != CBManagerStatePoweredOn) {
