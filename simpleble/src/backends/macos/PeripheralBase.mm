@@ -53,7 +53,18 @@ BluetoothAddressType PeripheralBase::address_type() {
     return BluetoothAddressType::UNSPECIFIED;
 }
 
-int16_t PeripheralBase::rssi() { return rssi_; }
+int16_t PeripheralBase::rssi() { 
+    PeripheralBaseMacOS* internal = (__bridge PeripheralBaseMacOS*)opaque_internal_;
+    if([internal isConnected])
+    {
+        rssi_ = [internal rssi];
+        return rssi_;
+    }
+    else
+    {
+        return rssi_;
+    }
+}
 
 int16_t PeripheralBase::tx_power() { return tx_power_; }
 

@@ -69,6 +69,10 @@ typedef struct {
     return [self.peripheral maximumWriteValueLengthForType:CBCharacteristicWriteWithoutResponse];
 }
 
+- (int16_t) rssi {
+    return [self.peripheral readRSSI];
+}
+
 - (void)connect {
     @synchronized(self) {
         // NSLog(@"Connecting to peripheral: %@", self.peripheral.name);

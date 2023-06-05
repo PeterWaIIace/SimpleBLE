@@ -17,6 +17,7 @@
 - (NSString*)identifier;
 - (NSString*)address;
 - (uint16_t)mtu;
+- (int16_t)rssi;
 
 - (void)connect;
 - (void)disconnect;
