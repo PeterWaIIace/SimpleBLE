@@ -238,5 +238,5 @@ void PeripheralBase::delegate_did_disconnect() {
 
 void PeripheralBase::delegat_did_read_RSSI(int16_t RSSI)
 {
-    rssi_ = RSSI
+    rssi_ = RSSI;
 }
