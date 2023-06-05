@@ -70,7 +70,14 @@ typedef struct {
 }
 
 - (int16_t) rssi {
-    return [self.peripheral readRSSI];
+    [self.peripheral readRSSI];
+    return rssi_;
+}
+
+- (void)centralManager:(CBCentralManager *)central
+    didReadRSSI RSSI: NSNumber
+    error: Error? {
+                rssi_ = RSSI;
 }
 
 - (void)connect {

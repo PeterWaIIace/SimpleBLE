@@ -19,6 +19,10 @@
 - (uint16_t)mtu;
 - (int16_t)rssi;
 
+- (void)centralManager:(CBCentralManager *)central
+    didReadRSSI RSSI: NSNumber
+    error: Error?;
+
 - (void)connect;
 - (void)disconnect;
 - (bool)isConnected;
