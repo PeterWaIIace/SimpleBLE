@@ -76,7 +76,6 @@ class PeripheralBase {
 
     kvn::safe_callback<void()> callback_on_connected_;
     kvn::safe_callback<void()> callback_on_disconnected_;
-
 };
 
 }  // namespace SimpleBLE
