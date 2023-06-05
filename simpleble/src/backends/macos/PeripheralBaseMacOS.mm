@@ -74,10 +74,10 @@ typedef struct {
     return rssi_;
 }
 
-- (void)centralManager:(CBCentralManager *)central
-    didReadRSSI RSSI: NSNumber
-    error: Error? {
-                rssi_ = RSSI;
+- (void)peripheral:(CBPeripheral *)peripheral 
+       didReadRSSI:(NSNumber *)RSSI 
+             error:(NSError *)error{
+            rssi_ = RSSI;
 }
 
 - (void)connect {

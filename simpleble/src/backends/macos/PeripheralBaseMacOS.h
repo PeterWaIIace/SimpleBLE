@@ -19,10 +19,9 @@
 - (uint16_t)mtu;
 - (int16_t)rssi;
 
-- (void)centralManager:(CBCentralManager *)central
-    didReadRSSI RSSI: NSNumber
-    error: Error?;
-
+- (void)peripheral:(CBPeripheral *)peripheral 
+       didReadRSSI:(NSNumber *)RSSI 
+             error:(NSError *)error;
 - (void)connect;
 - (void)disconnect;
 - (bool)isConnected;
