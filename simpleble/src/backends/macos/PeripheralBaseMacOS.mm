@@ -71,13 +71,6 @@ typedef struct {
 
 - (int16_t) rssi {
     [self.peripheral readRSSI];
-    return rssi_;
-}
-
-- (void)peripheral:(CBPeripheral *)peripheral 
-       didReadRSSI:(NSNumber *)RSSI 
-             error:(NSError *)error{
-            rssi_ = RSSI;
 }
 
 - (void)connect {

@@ -57,7 +57,7 @@ int16_t PeripheralBase::rssi() {
     PeripheralBaseMacOS* internal = (__bridge PeripheralBaseMacOS*)opaque_internal_;
     if([internal isConnected])
     {
-        rssi_ = [internal rssi];
+        [internal rssi];
         return rssi_;
     }
     else
@@ -234,4 +234,9 @@ void PeripheralBase::delegate_did_disconnect() {
     if (callback_on_disconnected_ && !manual_disconnect_triggered_) {
         callback_on_disconnected_();
     }
+}
+
+void PeripheralBase::delegat_did_read_RSSI(int16_t RSSI)
+{
+    rssi_ = RSSI
 }

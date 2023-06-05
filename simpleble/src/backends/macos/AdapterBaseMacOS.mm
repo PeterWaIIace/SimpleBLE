@@ -162,4 +162,11 @@
     }
 }
 
+- (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error  {
+    if (error != nil) {
+        NSLog(@"Failed to connect to peripheral %@: %@\n", peripheral.name, error);
+    }
+    _adapter->delegate_did_read_RSSI_peripheral((__bridge void*)peripheral,(int16_t)[RSSI shortValue]);
+}
+
 @end

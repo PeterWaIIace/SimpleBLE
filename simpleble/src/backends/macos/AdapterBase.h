@@ -50,6 +50,7 @@ class AdapterBase {
                                           advertising_data_t advertising_data);
     void delegate_did_connect_peripheral(void* opaque_peripheral);
     void delegate_did_disconnect_peripheral(void* opaque_peripheral);
+    void delegate_did_read_RSSI_peripheral(void* opaque_peripheral, int16_t RSSI);
 
   protected:
     /**

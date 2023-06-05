@@ -174,3 +174,13 @@ void AdapterBase::delegate_did_disconnect_peripheral(void* opaque_peripheral) {
     std::shared_ptr<PeripheralBase> base_peripheral = this->peripherals_.at(opaque_peripheral);
     base_peripheral->delegate_did_disconnect();
 }
+
+void AdapterBase::delegate_did_read_RSSI_peripheral(void* opaque_peripheral,int16_t RSSI) {
+    if (this->peripherals_.count(opaque_peripheral) == 0) {
+        throw Exception::InvalidReference();
+    }
+
+    // Load the existing PeripheralBase object
+    std::shared_ptr<PeripheralBase> base_peripheral = this->peripherals_.at(opaque_peripheral);
+    base_peripheral->delegat_did_read_RSSI(RSSI);
+}
