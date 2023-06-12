@@ -24,7 +24,7 @@ PeripheralBase::PeripheralBase(void* opaque_peripheral, void* opaque_adapter, ad
     rssi_ = advertising_data.rssi;
     tx_power_ = advertising_data.tx_power;
 
-    [opaque_internal_ set_rssi rssi_];
+    [opaque_internal_ setRssi: rssi_];
 }
 
 PeripheralBase::~PeripheralBase() {
@@ -87,7 +87,7 @@ void PeripheralBase::update_advertising_data(advertising_data_t advertising_data
     advertising_data.service_data.merge(service_data_);
     service_data_ = advertising_data.service_data;
 
-    [opaque_internal_ set_rssi rssi_];
+    [opaque_internal_ setRssi: rssi_];
 }
 
 void PeripheralBase::connect() {
