@@ -23,6 +23,8 @@ PeripheralBase::PeripheralBase(void* opaque_peripheral, void* opaque_adapter, ad
     service_data_ = advertising_data.service_data;
     rssi_ = advertising_data.rssi;
     tx_power_ = advertising_data.tx_power;
+
+    [opaque_internal_ set_rssi rssi_];
 }
 
 PeripheralBase::~PeripheralBase() {
@@ -75,6 +77,8 @@ uint16_t PeripheralBase::mtu() {
 }
 
 void PeripheralBase::update_advertising_data(advertising_data_t advertising_data) {
+    PeripheralBaseMacOS* internal = (__bridge PeripheralBaseMacOS*)opaque_internal_;
+
     is_connectable_ = advertising_data.connectable;
     manufacturer_data_ = advertising_data.manufacturer_data;
     rssi_ = advertising_data.rssi;
@@ -82,6 +86,8 @@ void PeripheralBase::update_advertising_data(advertising_data_t advertising_data
 
     advertising_data.service_data.merge(service_data_);
     service_data_ = advertising_data.service_data;
+
+    [opaque_internal_ set_rssi rssi_];
 }
 
 void PeripheralBase::connect() {

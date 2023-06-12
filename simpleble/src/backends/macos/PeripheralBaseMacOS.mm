@@ -44,7 +44,6 @@ typedef struct {
         _peripheral = [peripheral copy];
         _centralManager = centralManager;
         _rssi = 0;
-        [self.peripheral readRSSI];
 
         _peripheral.delegate = self;
     }
@@ -74,6 +73,10 @@ typedef struct {
 - (int16_t) rssi{
     [self.peripheral readRSSI];
     return _rssi;
+}
+
+- (void)setRssi:(int16_t)new_rssi{
+    _rssi = new_rssi;
 }
 
 - (void)connect {

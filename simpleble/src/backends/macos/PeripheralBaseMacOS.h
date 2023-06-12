@@ -22,6 +22,8 @@
 - (uint16_t)mtu;
 - (int16_t)rssi;
 
+- (void)setRssi:(int16_t)new_rssi;
+
 - (void)connect;
 - (void)disconnect;
 - (bool)isConnected;
