@@ -8,8 +8,7 @@
 #include <vector>
 #include "PeripheralBase.h"
 
-@interface PeripheralBaseMacOS : NSObject<CBPeripheralDelegate>
-{
+@interface PeripheralBaseMacOS : NSObject<CBPeripheralDelegate> {
     int16_t _rssi;
 }
 
