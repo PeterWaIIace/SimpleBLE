@@ -164,6 +164,7 @@
 
 // IOS only API
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error  {
+    NSLog(@"Updating RSSI peripheral");
     if (error != nil) {
         NSLog(@"Failed to connect to peripheral %@: %@\n", peripheral.name, error);
     }
@@ -174,6 +175,7 @@
 
 // MacOS only API
 - (void)peripheral:(CBPeripheral *)peripheral peripheralDidUpdateRSSI:(NSError *)error  {
+    NSLog(@"Updating RSSI peripheral");
     if (error != nil) {
         NSLog(@"Failed to connect to peripheral %@: %@\n", peripheral.name, error);
     }
