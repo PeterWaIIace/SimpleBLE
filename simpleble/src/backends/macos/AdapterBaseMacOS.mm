@@ -162,12 +162,23 @@
     }
 }
 
+// IOS only API
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error  {
     if (error != nil) {
         NSLog(@"Failed to connect to peripheral %@: %@\n", peripheral.name, error);
     }
     NSLog(@"Updating RSSI");
     _adapter->delegate_did_read_RSSI_peripheral((__bridge void*)peripheral,(int16_t)[RSSI shortValue]);
+}
+
+
+// MacOS only API
+- (void)peripheral:(CBPeripheral *)peripheral peripheralDidUpdateRSSI:(NSError *)error  {
+    if (error != nil) {
+        NSLog(@"Failed to connect to peripheral %@: %@\n", peripheral.name, error);
+    }
+    NSLog(@"Updating RSSI");
+    _adapter->delegate_did_read_RSSI_peripheral((__bridge void*)peripheral,(int16_t)[peripheral->RSSI shortValue]);
 }
 
 @end
