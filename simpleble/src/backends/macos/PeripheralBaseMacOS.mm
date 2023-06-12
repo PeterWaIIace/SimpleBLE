@@ -44,6 +44,7 @@ typedef struct {
         _peripheral = [peripheral copy];
         _centralManager = centralManager;
         _rssi = 0;
+        [self.peripheral readRSSI];
 
         _peripheral.delegate = self;
     }
@@ -70,7 +71,7 @@ typedef struct {
     return [self.peripheral maximumWriteValueLengthForType:CBCharacteristicWriteWithoutResponse];
 }
 
-- (int16_t) rssi {
+- (int16_t) rssi{
     [self.peripheral readRSSI];
     return _rssi;
 }
