@@ -87,7 +87,7 @@ void PeripheralBase::update_advertising_data(advertising_data_t advertising_data
     advertising_data.service_data.merge(service_data_);
     service_data_ = advertising_data.service_data;
 
-    [opaque_internal_ setRssi: rssi_];
+    [internal setRssi: rssi_];
 }
 
 void PeripheralBase::connect() {
