@@ -180,6 +180,7 @@ void AdapterBase::delegate_did_read_RSSI_peripheral(void* opaque_peripheral,int1
         throw Exception::InvalidReference();
     }
 
+    NSLog(@"delegate_did_read_RSSI_peripheral");
     // Load the existing PeripheralBase object
     std::shared_ptr<PeripheralBase> base_peripheral = this->peripherals_.at(opaque_peripheral);
     base_peripheral->delegat_did_read_RSSI(RSSI);
