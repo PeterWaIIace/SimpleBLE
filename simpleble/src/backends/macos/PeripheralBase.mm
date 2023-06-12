@@ -16,6 +16,7 @@ PeripheralBase::PeripheralBase(void* opaque_peripheral, void* opaque_adapter, ad
     // the reference count. This means that AdapterBase will be responsible for releasing the
     // Objective-C++ object in the destructor.
     opaque_internal_ = (__bridge_retained void*)[[PeripheralBaseMacOS alloc] init:peripheral centralManager:central_manager];
+    PeripheralBaseMacOS* internal = (__bridge PeripheralBaseMacOS*)opaque_internal_;
 
     is_connectable_ = advertising_data.connectable;
     manual_disconnect_triggered_ = false;
@@ -24,7 +25,7 @@ PeripheralBase::PeripheralBase(void* opaque_peripheral, void* opaque_adapter, ad
     rssi_ = advertising_data.rssi;
     tx_power_ = advertising_data.tx_power;
 
-    [opaque_internal_ setRssi: rssi_];
+    [internal setRssi: rssi_];
 }
 
 PeripheralBase::~PeripheralBase() {
