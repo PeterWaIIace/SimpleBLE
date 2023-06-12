@@ -603,7 +603,7 @@ typedef struct {
         NSLog(@"Failed to connect to peripheral %@: %@\n", peripheral.name, error);
     }
     // TODO: how to communicate with this code
-    _rssi = (int16_t)[RSSI shortValue];
+    _rssi = (int16_t)[peripheral.RSSI shortValue];
     // _adapter->delegate_did_read_RSSI_peripheral((__bridge void*)peripheral,(int16_t)[peripheral.RSSI shortValue]);
 }
 
