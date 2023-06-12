@@ -178,7 +178,7 @@
         NSLog(@"Failed to connect to peripheral %@: %@\n", peripheral.name, error);
     }
     NSLog(@"Updating RSSI");
-    _adapter->delegate_did_read_RSSI_peripheral((__bridge void*)peripheral,(int16_t)[peripheral->RSSI shortValue]);
+    _adapter->delegate_did_read_RSSI_peripheral((__bridge void*)peripheral,(int16_t)[peripheral.RSSI shortValue]);
 }
 
 @end
