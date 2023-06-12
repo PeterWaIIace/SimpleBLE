@@ -58,7 +58,7 @@ int16_t PeripheralBase::rssi() {
     NSLog(@"reading rssi from new simpleBle sdk");
     if([internal isConnected])
     {
-        [internal rssi];
+        rssi_ = [internal rssi];
         return rssi_;
     }
     else
