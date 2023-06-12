@@ -58,7 +58,6 @@ BluetoothAddressType PeripheralBase::address_type() {
 
 int16_t PeripheralBase::rssi() { 
     PeripheralBaseMacOS* internal = (__bridge PeripheralBaseMacOS*)opaque_internal_;
-    NSLog(@"reading rssi from new simpleBle sdk");
     if([internal isConnected])
     {
         rssi_ = [internal rssi];
