@@ -9,6 +9,9 @@
 #include "PeripheralBase.h"
 
 @interface PeripheralBaseMacOS : NSObject<CBPeripheralDelegate>
+{
+    int16_t _rssi;
+}
 
 - (instancetype)init:(CBPeripheral*)peripheral centralManager:(CBCentralManager*)centralManager;
 

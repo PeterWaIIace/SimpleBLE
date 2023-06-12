@@ -43,6 +43,7 @@ typedef struct {
         // a strong property to prevent them from being deallocated by ARC or the garbage collector.
         _peripheral = [peripheral copy];
         _centralManager = centralManager;
+        _rssi = 0;
 
         _peripheral.delegate = self;
     }
@@ -71,6 +72,7 @@ typedef struct {
 
 - (int16_t) rssi {
     [self.peripheral readRSSI];
+    return _rssi;
 }
 
 - (void)connect {
@@ -585,10 +587,11 @@ typedef struct {
 // IOS only API
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error  {
     NSLog(@"Updating RSSI peripheral");
-    // if (error != nil) {
-    //     NSLog(@"Failed to connect to peripheral %@: %@\n", peripheral.name, error);
-    // }
-    // NSLog(@"Updating RSSI");
+    if (error != nil) {
+        NSLog(@"Failed to connect to peripheral %@: %@\n", peripheral.name, error);
+    }
+    // TODO: how to communicate with this code
+    _rssi = (int16_t)[RSSI shortValue];
     // _adapter->delegate_did_read_RSSI_peripheral((__bridge void*)peripheral,(int16_t)[RSSI shortValue]);
 }
 
@@ -596,10 +599,11 @@ typedef struct {
 // MacOS only API
 - (void)peripheral:(CBPeripheral *)peripheral peripheralDidUpdateRSSI:(NSError *)error  {
     NSLog(@"Updating RSSI peripheral");
-    // if (error != nil) {
-    //     NSLog(@"Failed to connect to peripheral %@: %@\n", peripheral.name, error);
-    // }
-    // NSLog(@"Updating RSSI");
+    if (error != nil) {
+        NSLog(@"Failed to connect to peripheral %@: %@\n", peripheral.name, error);
+    }
+    // TODO: how to communicate with this code
+    _rssi = (int16_t)[RSSI shortValue];
     // _adapter->delegate_did_read_RSSI_peripheral((__bridge void*)peripheral,(int16_t)[peripheral.RSSI shortValue]);
 }
 
