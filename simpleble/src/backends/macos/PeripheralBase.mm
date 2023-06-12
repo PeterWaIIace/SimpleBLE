@@ -243,9 +243,3 @@ void PeripheralBase::delegate_did_disconnect() {
         callback_on_disconnected_();
     }
 }
-
-void PeripheralBase::delegat_did_read_RSSI(int16_t RSSI)
-{
-    NSLog(@"changing RSSI value");
-    rssi_ = RSSI;
-}

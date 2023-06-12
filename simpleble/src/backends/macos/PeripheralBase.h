@@ -54,7 +54,6 @@ class PeripheralBase {
 
     void delegate_did_connect();
     void delegate_did_disconnect();
-    void delegat_did_read_RSSI(int16_t RSSI);
 
     void update_advertising_data(advertising_data_t advertising_data);
 
